@@ -2,9 +2,13 @@
 
 An (unpublished) R-package *jarosimilarity*. The package does fuzzy matching between (multi-)sets of strings using the [Jaro-similarity](https://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance) algorithm.
 
+## Usage
+
+See README of the package under [./pkg/README.md](./pkg/README.md)
+
 ## Implementation
 
-The idea is to take the implementation of Jaro-Winkler from the stringdist-package as a starting point. The first step is strip away as much of the code as possible (stringdist supports multiple fuzzymatching algorithms so the code is more complicated). 
+The idea is to take the implementation of Jaro-Winkler from the [stringdist-package](https://github.com/markvanderloo/stringdist) as a starting point. The first step is strip away as much of the code as possible (stringdist supports multiple fuzzymatching algorithms so the code is more complicated). 
 
 Differences to stringdist-package:
 - Can only compare ASCII-strings
