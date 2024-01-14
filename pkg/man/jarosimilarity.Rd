@@ -17,10 +17,8 @@ jarosimilarity(a, b, th = 0.7, nthreads = 1)
 It is \emph{not} set automatically to match the number of cores in your machine.}
 }
 \value{
-Returns a containing two vectors of integers that indexes to the vectors given as parameters (that is, 'a' and 'b').
+Returns a list containing two vectors of integers that indexes to the vectors given as parameters (that is, 'a' and 'b').
 Corresponding elements in the vectors describe a match.
-
-vector. Output characters are in the system's native encoding.
 }
 \description{
 Find approximate matches in two (multi-)sets of strings using the JaroSimilarity algorithm.

@@ -13,3 +13,8 @@
 jarosimilarity.Rcheck/
 
 *.gz
+
+## testdata
+
+perf_test/data/*
+!perf_test/data/download_test_dataset.sh

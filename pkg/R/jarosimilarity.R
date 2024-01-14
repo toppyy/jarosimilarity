@@ -17,7 +17,6 @@
 #' Returns a list containing two vectors of integers that indexes to the vectors given as parameters (that is, 'a' and 'b').
 #' Corresponding elements in the vectors describe a match.
 #' 
-#' vector. Output characters are in the system's native encoding.
 #' 
 #' @useDynLib jarosimilarity, .registration=TRUE
 #' @export
