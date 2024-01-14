@@ -18,7 +18,7 @@ When you want to approximate matches between two sets of strings, you'd do somet
 
 The idea is to find *matches* quicker than with the method above (*not* to calculate the distance faster) and with a smaller memory footprint.
 
-## Usage
+## Usage & installation
 
 See README of the package under [./pkg/README.md](./pkg/README.md)
 
