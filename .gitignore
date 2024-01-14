@@ -1,0 +1,15 @@
+.Rproj.user
+.Rhistory
+.Rdata
+.httr-oauth
+.DS_Store
+
+# compiled source
+*.o
+*.so
+
+.vscode
+
+jarosimilarity.Rcheck/
+
+*.gz
