@@ -1,6 +1,7 @@
 #include <R.h>
 #include <Rinternals.h>
 #include <stdio.h>
+#include <math.h>
 #ifdef _OPENMP
 #include <omp.h>
 #endif
@@ -22,8 +23,7 @@ double _jarosimilarity(
     if ( x == 0 && y == 0 ) return 0;
 
     char *wrk = (char *) work;
-    char *matcha = wrk
-                , *matchb = wrk + x;  
+    char *matcha = wrk, *matchb = wrk + x;  
     char left, right;
 
 
@@ -47,14 +47,12 @@ double _jarosimilarity(
         }
     }
 
-    // m/x must be at least m_x * x, to be above threshold
-    double m_x = threshold/(1.0/3.0) - 2;
-    // // Count the number of matching characters needed
-    int min_m = floor( m_x * x) - 1;
-
-    // if (m <= 1) {
-    //     return 0.0;
-    // }
+    // Solve how many matches we need at least to go above the threshold if we assume that t = 0.
+    // jarosimilarity being (x/m + y/m + (m-t)/m) * (1/3)
+    // 
+    // Given a threshold 0.9, we can simplify it to this and solve m
+    
+    int  min_m =  ceil(  ( ((threshold * 3) - 1) * (x*y) ) / (y+x) );
 
     if ( m < min_m ){
         return 0.0;
