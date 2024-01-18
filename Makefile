@@ -16,7 +16,7 @@ cran: doc
 	R CMD check --as-cran *.tar.gz
 
 test: doc
-	R -s -e "tinytest::build_install_test('pkg')"
+	Rscript ./pkg/inst/test/test_jaro_similarity.R
 
 clean:
 	rm -rf jarosimilarity.Rcheck
