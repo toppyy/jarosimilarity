@@ -21,7 +21,7 @@ test_a_function <- function(set1, set2, name, func, threshold, nthread, times = 
     }
     time <- time / times
 
-    cat(paste("Average time: ",round(time[1],4), "\n"))
+    cat(paste("Average time: ",round(time[1],4), ". Matches: ", matches ,"\n"))
 
 
     results <- list(

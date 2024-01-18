@@ -17,10 +17,10 @@ for (test in tests) {
     b <- test$strs[2]
     observed <- jarosimilarity(a, b, test$threshold, 1)
     
-    expected_length <- ifelse(test$expected_to_match, 2, 0)
+    expected_length <- ifelse(test$expected_to_match, 1, 0)
 
-    if (length(observed) != expected_length) {
-        stop(paste("Test failed for:", a, b, ". Returned",length(observed), ", expected", expected_length))
+    if (nrow(observed) != expected_length) {
+        stop(paste("Test failed for:", a, b, ". Returned",nrow(observed), ", expected", expected_length))
         
     } else {
         cat(paste("Test for",a,"vs","b PASSED.\n"))
