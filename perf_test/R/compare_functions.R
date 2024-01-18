@@ -23,7 +23,7 @@ compare_functions <- function(output_folder, functions) {
     write.table(
         results,
         paste0(output_folder,name,'.csv'),
-        sep=";",
+        sep=",",
         row.names=F,
         quote=F
     )
