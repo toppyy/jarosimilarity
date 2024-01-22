@@ -4,7 +4,7 @@
 compare_functions <- function(output_folder, functions) {
 
     tests <- list()
-    th <- 0.6
+    th <- 0.1
 
     base <- list(set1_size = 1000, set2_size = 10000 , nthread = 2, threshold = th)
 

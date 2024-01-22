@@ -21,7 +21,7 @@ set.seed(2511)
 # Specify functions to test
 # Each function returns the number of matches. Specified in functions_to_test.R
 functions <- list(
-    "stringdist" = stringdist_runner,
+    #"stringdist" = stringdist_runner,
     "jarosimilarity" = jarosimilarity_runner    
 )
 
