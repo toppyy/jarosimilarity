@@ -2,12 +2,12 @@ clean <- function(str) {
     c(gsub('[^A-Za-z ]','',str))
 }
 
-imdb_names_fn <- "./data/imdb_names.RData"
+imdb_names_fn <- "./perf_test/data/imdb_names.RData"
 
 if (!file.exists(imdb_names_fn)) {
 
     cat("Manipulating imdb-names\n")
-    imdb_names_raw <- readLines("./data/name.basics.tsv", n = 1E5)
+    imdb_names_raw <- readLines("./perf_test/data/name.basics.tsv", n = 1E5)
     imdb_names_raw <- imdb_names_raw[-1]
 
     get_name_from_record <- function(record) {

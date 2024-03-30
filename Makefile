@@ -18,6 +18,9 @@ cran: doc
 test: doc
 	Rscript ./pkg/inst/test/test_jaro_similarity.R
 
+perf-test:
+	Rscript ./perf_test/performance_tests.R
+
 clean:
 	rm -rf jarosimilarity.Rcheck
 	rm -f *.tar.gz
