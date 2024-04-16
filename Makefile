@@ -24,3 +24,5 @@ perf-test:
 clean:
 	rm -rf jarosimilarity.Rcheck
 	rm -f *.tar.gz
+	rm -f pkg/src/*.o
+	rm -f pkg/src/*.so
