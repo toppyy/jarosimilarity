@@ -15,13 +15,13 @@ cran: doc
 	R CMD build pkg
 	R CMD check --as-cran *.tar.gz
 
-test: doc
+test: install doc
 	Rscript ./pkg/inst/test/test_jaro_similarity.R
 
 perf-test:
 	Rscript ./perf_test/performance_tests.R
 
-clean:
+clean: 
 	rm -rf jarosimilarity.Rcheck
 	rm -f *.tar.gz
 	rm -f pkg/src/*.o
