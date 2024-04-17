@@ -5,23 +5,31 @@ test_a_function <- function(set1, set2, name, func, threshold, nthread, times = 
     if (times == 0) {
         stop("Why do you want to test zero 'times'?")
     }
-    cat("Testing function: ")
     cat(name)
-    cat("\n")
+    cat(":\t")
 
-    user_times <- rep(0,times)
+    user_times      <- rep(0,times)
+    elapsed_times   <- rep(0,times)
 
     time <- rep(0,5)
 
     for (i in 1:times) {
-        cat(paste("iteration",i,"\n"))
         tmp <- system.time(matches <- func(set1, set2, threshold, nthread))
-        user_times[i+1] <- tmp[1]
+        user_times[i] <- tmp[1]
+        elapsed_times[i] <- tmp[3]
         time <- time + tmp
     }
     time <- time / times
 
-    cat(paste("Average time: ",round(time[1],4), ". Matches: ", matches ,"\n"))
+    decimals <- 3
+    cat(
+        paste(
+            "User-time avg: ",format(round(time[1],decimals),nsmall=decimals),
+            ". Elapsed avg: ",  format(round(mean(elapsed_times),decimals), nsmall=decimals),
+            ". Matches: ", matches
+            ,"\n"
+        )
+    )
 
 
     results <- list(
@@ -37,7 +45,8 @@ test_a_function <- function(set1, set2, name, func, threshold, nthread, times = 
             "threshold" = threshold,
             "times" = times,
             "user_times_mean" = mean(user_times),
-            "user_times_sd"   = sd(user_times)
+            "user_times_sd"   = sd(user_times),
+            "elapsed_times_mean" = mean(elapsed_times)
         )
     )
     return(results)
@@ -72,8 +81,9 @@ run_tests <- function(tests, functions, times = 1) {
 
     result_df$set1_size <- as.integer(result_df$set1_size)
     result_df$set2_size <- as.integer(result_df$set2_size)
-    result_df$user_times_mean <- as.numeric(result_df$user_times_mean)
-    result_df$user_times_sd <- as.numeric(result_df$user_times_sd)
+    result_df$elapsed_times_mean   <- as.numeric(result_df$elapsed_times_mean)
+    result_df$user_times_mean       <- as.numeric(result_df$user_times_mean)
+    result_df$user_times_sd         <- as.numeric(result_df$user_times_sd)
 
     return(result_df)
 }

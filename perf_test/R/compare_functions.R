@@ -5,8 +5,11 @@ compare_functions <- function(output_folder, functions) {
 
     tests <- list()
     th <- 0.1
+    set1_size   <- 1000
+    set2_size   <- 1000
+    nthread     <- 2
 
-    base <- list(set1_size = 1000, set2_size = 10000 , nthread = 2, threshold = th)
+    base <- list(set1_size = set1_size, set2_size = set2_size , nthread = nthread, threshold = th)
 
     while (th <= 0.95) {
         base["threshold"] <- th
@@ -31,9 +34,11 @@ compare_functions <- function(output_folder, functions) {
     thresholds  <- unique(results$threshold)
     barplotdata <- matrix(ncol = nrow(results)/2 ,nrow= length(unique(results$name)))
 
+    measure_var <- 'elapsed_times_mean'
+
     col <- 1
     for (th in thresholds) {
-        barplotdata[,col] <- results[results$threshold == th,'user_times_mean']
+        barplotdata[,col] <- results[results$threshold == th,measure_var]
         col <- col + 1
     }
 
@@ -48,7 +53,7 @@ compare_functions <- function(output_folder, functions) {
             font.axis=2, 
             beside=T,        
             xlab="Threshold for match", 
-            ylab="Seconds", 
+            ylab=paste0("Seconds (",measure_var,")"),
             font.lab=2,
             ylim=c(0, max(results$user_times_mean) * 1.3)
     )
@@ -64,6 +69,16 @@ compare_functions <- function(output_folder, functions) {
         legend=rownames(barplotdata),
         bg="white"
 
+    )
+    title(
+        paste0(
+            set1_size,
+            " vs. ",
+            set2_size,
+            " comparisons using ",
+            nthread,
+            " threads"
+        )
     )
 
     x <- dev.off()
