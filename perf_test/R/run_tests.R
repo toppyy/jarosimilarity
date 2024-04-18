@@ -52,13 +52,15 @@ test_a_function <- function(set1, set2, name, func, threshold, nthread, times = 
     return(results)
 }
 
+## Test dataset
+make_test_dataset <- function(size) sample(imdb_names, size, replace = TRUE)
 
 clean_names <- function(n) {
     n <- strsplit(n,'\\.')[[1]]
     n[length(n)]
 }
 
-run_tests <- function(tests, functions, times = 1) {
+run_tests <- function(tests, functions, iterations_per_test = 1) {
 
     results <- list()
 
@@ -71,7 +73,7 @@ run_tests <- function(tests, functions, times = 1) {
         threshold <- test$threshold
 
         for (fn in names(functions)) {
-            results <- append(results,test_a_function(set1, set2, fn, functions[[fn]], threshold, nthread, times = times ))
+            results <- append(results,test_a_function(set1, set2, fn, functions[[fn]], threshold, nthread, times = iterations_per_test ))
         }
 
     }
@@ -90,6 +92,4 @@ run_tests <- function(tests, functions, times = 1) {
 
 
 
-## Test dataset
 
-make_test_dataset <- function(size) sample(imdb_names, size, replace = TRUE)
